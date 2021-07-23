@@ -27,6 +27,17 @@
 .App-link {
   color: #61dafb;
 }
+.carousel-caption{
+  position: absolute;
+    right: 77%;
+    bottom: 205px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
 
 @keyframes App-logo-spin {
   from {

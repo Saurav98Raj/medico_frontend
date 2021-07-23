@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DashboardLayout from '../common/layouts/dashboard/DashboardLayout';
 import { buyUserPackage, removeItemFromCart } from '../../actions';
@@ -33,6 +34,31 @@ function Cart({ history }) {
     dispatch(removeItemFromCart(id));
   }
 
+
+  let Data = JSON.parse(localStorage.getItem("user")).id;
+
+  let packData = JSON.parse(localStorage.getItem("cart")).items[0].id;
+
+  console.warn(packData);
+  const [pid, setPid] = useState(packData);
+  const [studentid, setStudentid] = useState(Data);
+  const [amount, setAmount] = useState(calculateCartAmount());
+  const [status, setStatus] = useState("1");
+
+  async function paymentshow() {
+
+    const formData = new FormData();
+    formData.append('pid', pid);
+    formData.append('studentid', studentid);
+    formData.append('amount', amount);
+    formData.append('status', status);
+    let result = await fetch("http://localhost:8000/api/payment/", {
+
+      method: 'POST',
+      body: formData,
+    });
+
+  }
   return (
     <DashboardLayout>
       <section className='secc'>
@@ -84,7 +110,7 @@ function Cart({ history }) {
                       <strong>Total:</strong> {calculateCartAmount()}
                     </ListGroupItem>
                   </ListGroup>
-                  <Button color='info' block onClick={() => buyPackage(items)}>
+                  <Button color='info' onClick={()=>buyPackage(items)} onClick= {paymentshow} >
                     Buy Packages
                   </Button>
                 </div>
