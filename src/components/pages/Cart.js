@@ -35,9 +35,9 @@ function Cart({ history }) {
   }
 
 
-  let Data = JSON.parse(localStorage.getItem("user")).id;
+  let Data = JSON.parse(localStorage.getItem("user")).name;
 
-  let packData = JSON.parse(localStorage.getItem("cart")).items[0].id;
+  let packData = JSON.parse(localStorage.getItem("cart")).items[0].name;
 
   console.warn(packData);
   const [pid, setPid] = useState(packData);
@@ -110,7 +110,8 @@ function Cart({ history }) {
                       <strong>Total:</strong> {calculateCartAmount()}
                     </ListGroupItem>
                   </ListGroup>
-                  <Button color='info' onClick={()=>buyPackage(items)} onClick= {paymentshow} >
+                  {/* onClick={()=>buyPackage(items)} */}
+                  <Button color='info'  onClick= {paymentshow} >
                     Buy Packages
                   </Button>
                 </div>

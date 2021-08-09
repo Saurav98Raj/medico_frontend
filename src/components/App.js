@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Courses from './pages/Courses';
 import Services from './pages/Services';
+import Help from './pages/Help';
 import Cart from './pages/Cart';
 // import Slider from './pages/Slider';
 import Login from './authentication/Login';
@@ -42,6 +43,11 @@ class App extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/services`}
             component={Services}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/help`}
+            component={Help}
           />
           <Route
             exact
